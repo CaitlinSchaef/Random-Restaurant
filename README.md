@@ -17,6 +17,8 @@ This is a template with the following:
 ### initial setup
 * vite.config.js => change base to your GitHub repo name
 * GitHub => repo => settings => pages => branch => select 'main' and change from /root to /docs
+
+<!-- You have to do this every time you want it accessible from web to update the doc folder -->
 ### deploy
 * from branch 'main':
 1. $ `npm run build`
