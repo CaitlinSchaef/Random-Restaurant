@@ -1,6 +1,3 @@
-html {
-  height: 100%;
-}
 
 #root {
   display: flex;
@@ -12,10 +9,8 @@ html {
   flex-grow: 2;
 }
 
-.platypi-regular {
-  font-family: "Platypi", serif;
-  font-weight: 400;
-  font-style: normal;
+html {
+  height: 100%;
 }
 
 body {
@@ -28,8 +23,12 @@ body {
     /* attachment is what let you wrap it to the screen properly */
   background-attachment: fixed;
   overflow: hidden;
-  font-family: "Platypi", serif;
-  font-weight: 400;
+ }
+
+ #AppBody {
+  background-color: rgba(250, 235, 215, 0.596);
+  color: #2A5955;
+  font-family: poppins, sans-serif;
   font-style: normal;
-  color: black;
+  font-weight: 600; 
  }

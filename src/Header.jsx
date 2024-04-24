@@ -18,9 +18,10 @@ function Header() {
           <img
               alt=""
               src="./src/assets/_Logo4.png"
+              radius="50%"
               width="50"
               height="50"
-              className="d-inline-block align-top"
+              className="d-inline-block rounded-circle"
             />{' '}
         </Link>
         </Navbar.Brand>
