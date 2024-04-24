@@ -1,9 +1,7 @@
 html {
   height: 100%;
 }
-body {
-  height: 100%;
-}
+
 #root {
   display: flex;
   height: 100%;
@@ -13,3 +11,25 @@ body {
 #page-content {
   flex-grow: 2;
 }
+
+.platypi-regular {
+  font-family: "Platypi", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  height: 100%;
+  background-image: url("../src/assets/verticalHotelgreen.jpg"); 
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #f6f4e6;
+  background-size: cover;
+    /* attachment is what let you wrap it to the screen properly */
+  background-attachment: fixed;
+  overflow: hidden;
+  font-family: "Platypi", serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #f6f4e6;
+ }

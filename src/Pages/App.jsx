@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 const Title = () => {
   return (
     <h1>
-      Hello World!
+      Main Page
     </h1>
   )
 }
