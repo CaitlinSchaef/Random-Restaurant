@@ -11,7 +11,7 @@ const Title = () => {
 function App() {
   return (
     <div className="p-5">
-      <Link to='/about'>About</Link>
+      <Link to='/menu'>Menu</Link>
       <Title />
     </div>
   )

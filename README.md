@@ -9,6 +9,10 @@ This is a template with the following:
 * $ `npm install`
 * $ `npm run dev`
 
+## to install axios
+* in terminal type "npm i axios" or "npm install axios"
+* in file you want to use it in: import axios from 'axios';
+
 ## production deploy to GitHub Pages
 ### initial setup
 * vite.config.js => change base to your GitHub repo name
