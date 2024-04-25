@@ -28,6 +28,8 @@ body {
  .menuBody {
   background-color: rgba(250, 235, 215, 0.596);
   color: #2A5955;
+  border-style: solid;
+  border-color: #2A5955;
   font-family: poppins, sans-serif;
   font-style: normal;
   font-weight: 600; 

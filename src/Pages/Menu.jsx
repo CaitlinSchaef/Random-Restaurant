@@ -98,7 +98,7 @@ function Menu() {
       minBreakpoint="xs">
      
         <Container className>
-          <Row className="justify-content-xs-center border m-3 p-3 menuBody">
+          <Row className="justify-content-xs-center m-3 p-3 menuBody">
             <Col className="justify-content-center text-center p-1">
               <h1>MENU</h1>
               <MenuTitle title="Appetizers" onClick={(() => setDisplay('Appetizers'))}/>
@@ -109,7 +109,7 @@ function Menu() {
         </Container>
 {/* diplay menu container */}
         <Container className>
-          <Row className="justify-content-xs-center border m-3 p-3 menuBody">
+          <Row className="justify-content-xs-center m-3 p-3 menuBody">
             <Col className="justify-content-center text-center p-1">
               {display === "Appetizers" && <SpecificDisplay title="Appetizers" foodList={appetizers}/>}
               {display === "Lunch" &&  <SpecificDisplay title="Lunch" foodList={lunch}/>}
