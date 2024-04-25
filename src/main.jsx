@@ -16,7 +16,7 @@ import Menu from './Pages/Menu'
 import Contact from './Pages/Contact'
 import ErrorPage from './Pages/ErrorPage'
 import Header from './Header'
-import Footer from './Footer'
+// import Footer from './Footer'
 
 const site = import.meta.env.BASE_URL
 
@@ -28,7 +28,7 @@ function Layout() {
         <div id='page-content'>
           <Outlet />
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </>
   )
 }
