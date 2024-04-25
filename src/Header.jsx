@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import NavbarCollapse from 'react-bootstrap/NavbarCollapse'
+import Logo from './assets/_Logo4.svg'
 
 function Header() {
   let location = useLocation();
@@ -15,14 +16,16 @@ function Header() {
         <Navbar.Collapse className="justify-content-start">
         <Navbar.Brand>
           <Link className="nav-link" to='/'>
+            <div className="rounded-circle bg-light">
           <img
               alt=""
-              src="./src/assets/_Logo4.png"
-              radius="50%"
+              src={Logo}
+              // radius="50%"
               width="50"
               height="50"
-              className="d-inline-block rounded-circle"
-            />{' '}
+              className="d-inline-block m-auto"
+            />
+            </div>
         </Link>
         </Navbar.Brand>
 

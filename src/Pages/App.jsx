@@ -3,6 +3,8 @@ import ThemeProvider from 'react-bootstrap/ThemeProvider'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Logo from '../assets/_Logo4.png'
+
 
 // const Title = () => {
 //   return (
@@ -24,7 +26,7 @@ const Body = () => {
         <Col className="justify-content-center text-center" md="auto">
         <img
               alt=""
-              src="./src/assets/_Logo4.png"
+              src={Logo}
               width="200"
               height="auto"
               className="d-inline-block align-top mt-2 rounded-circle"
