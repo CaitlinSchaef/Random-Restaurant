@@ -33,6 +33,16 @@ const Dinner = ({/* component */}) => {
   )
 }
 
+const FoodDisplay = ({food}) => {
+  return (
+    <div>
+      {food.title}
+      {food.description}
+      {food.price}
+    </div>
+  )
+}
+
 //a getter
 
 async function getFood({ setMenuItems }) {
@@ -43,42 +53,30 @@ async function getFood({ setMenuItems }) {
 
 // function to insert info into the html divs  -setter
 
-async function fillMenu(foodList) {
-  // if Appetizer Clicked
-  {let Appetizer = await getFood({ setMenuItems })
-  foodlist.data.filter(food => food.category === "Appetizer")
-   // return "Title" "Description" "Price"
-  return Appetizer }
-  // if Lunch Clicked 
-  {let Lunch = await getFood({ setMenuItems })
-  foodlist.data.filter(food => food.category === "Lunch")
-   // return "Title" "Description" "Price"
-  return Lunch }
-  // if Dinner Clicked
-  {let Dinner = await getFood({ setMenuItems })
-  foodlist.data.filter(food => food.category === "Dinner")
-  // return "Title" "Description" "Price"
-  return Dinner{"Title", "Description", "Price"} }
+function fillMenu({ setAppetizers, setLunch, setDinner, menuItems }) {
+  setAppetizers(menuItems.filter(food => food.category === "Appetizer"))
+
 }
+
 
 // OR something like:
 
-const handleClick = () => {
-  let newTitle = {foodlist.data.filter(food => food.title)};
-  let newDescription = {foodlist.data.filter(food => food.description)};
-  let newPrice = {foodlist.data.filter(food => food.price)};
-  setMenuItems(newMenuItem) //?
-}
+// const handleClick = () => {
+//   let newTitle = {foodlist.data.filter(food => food.title)};
+//   let newDescription = {foodlist.data.filter(food => food.description)};
+//   let newPrice = {foodlist.data.filter(food => food.price)};
+//   setMenuItems(newMenuItem) //?
+// }
 
 
-return (
-  <h3={{margin: '5px'}}
-    onClick={handleClick}
-    >
-      {`Click Me ${buttonCount}`} //? should this be where I build the div
-  </h3>
-)
-}
+// return (
+//   <h3={{margin: '5px'}}
+//     onClick={handleClick}
+//     >
+//       {`Click Me ${buttonCount}`} //? should this be where I build the div
+//   </h3>
+// )
+// }
 
 
 
@@ -90,41 +88,50 @@ return (
 
 
 function Menu() {
-  const [MenuItems, setMenuItems] = useState([])
-  console.log('MenuItems: ', MenuItems)
+  const [menuItems, setMenuItems] = useState([])
+  const [appetizers, setAppetizers] = useState([])
+  const [lunch, setLunch] = useState([])
+  const [dinner, setDinner] = useState([])
+  console.log('MenuItems: ', menuItems)
   useEffect(() => {
     getFood({ setMenuItems })
   }, [])
-
-  const []
+  // empty brackets at the end of useEffect indicates it only happens on load, if a variable is in the brackets, it is watching that specific variable for change
+  useEffect(() => {
+    if (menuItems.length > 0) {
+      fillMenu({ setAppetizers, setLunch, setDinner, menuItems })
+    }
+  }, [menuItems])
+  console.log("Appetizers:", appetizers)
 
   return (
     <ThemeProvider
-  breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs']}
-  minBreakpoint="xs">
-  <div>
-    <Container className="border mt-3 mb-3 ml-3 mr-3" id="AppBody">
-      <Row className="justify-content-xs-center">
-        <Col className="justify-content-center text-center p-1">
-            <h2>Menu</h2>
-            <span>
-              <Appetizer />
-              <Lunch />
-              <Dinner />
-            </span>
-        </Col>
-      </Row>
-    </Container>
-    <Container className="border mt-3 mb-3 ml-3 mr-3" id="AppBody">
-      <Row className="justify-content-xs-center">
-        <Col className="justify-content-center text-center p-1">
-            <h2>Menu</h2>
-            <span>Filler Text, will fill menu here </span>
-        </Col>
-      </Row>
-    </Container>
-  </div>
-</ThemeProvider>
+      breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs']}
+      minBreakpoint="xs">
+      <div>
+        <Container className="border mt-3 mb-3 ml-3 mr-3 p-3" id="AppBody">
+          <Row className="justify-content-xs-center">
+            <Col className="justify-content-center text-center p-1">
+                <h2>Menu</h2>
+                <span>
+                  <Appetizer />
+                  <Lunch />
+                  <Dinner />
+                </span>
+            </Col>
+          </Row>
+        </Container>
+        {/* I want to set a component (maybe named Menu) here that will fill with a row with two columns over and over until  */}
+            {/* all menu items have been called  */}
+        <Container className="border mt-3 mb-3 ml-3 mr-3" id="AppBody">
+          <Row className="justify-content-xs-center">
+            <Col className="justify-content-center text-center p-1">
+              {appetizers.map(food => <FoodDisplay food = {food} />)}
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </ThemeProvider>
   )
 }
 
