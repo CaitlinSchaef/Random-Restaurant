@@ -108,9 +108,9 @@ function Menu() {
     <ThemeProvider
       breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs']}
       minBreakpoint="xs">
-      <div>
-        <Container className="border mt-3 mb-3 ml-3 mr-3 p-3" id="AppBody">
-          <Row className="justify-content-xs-center">
+     
+        <Container className>
+          <Row className="justify-content-xs-center border m-3 p-3 menuBody">
             <Col className="justify-content-center text-center p-1">
                 <h2>Menu</h2>
                 <span>
@@ -123,14 +123,14 @@ function Menu() {
         </Container>
         {/* I want to set a component (maybe named Menu) here that will fill with a row with two columns over and over until  */}
             {/* all menu items have been called  */}
-        <Container className="border mt-3 mb-3 ml-3 mr-3" id="AppBody">
-          <Row className="justify-content-xs-center">
+        <Container className>
+          <Row className="justify-content-xs-center border m-3 p-3 menuBody">
             <Col className="justify-content-center text-center p-1">
-              {appetizers.map(food => <FoodDisplay food = {food} />)}
+              {appetizers.map(food => <FoodDisplay key={food.id} food={food} />)}
             </Col>
           </Row>
         </Container>
-      </div>
+      
     </ThemeProvider>
   )
 }
