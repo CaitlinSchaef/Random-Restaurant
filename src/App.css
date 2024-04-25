@@ -9,9 +9,9 @@
   flex-grow: 2;
 }
 
-html {
+/* html {
   height: 100%;
-}
+} */
 
 body {
   height: 100%;
@@ -22,7 +22,7 @@ body {
   background-size: cover;
     /* attachment is what let you wrap it to the screen properly */
   background-attachment: fixed;
-  overflow: hidden;
+  overflow: scroll; 
  }
 
  .menuBody {
@@ -31,4 +31,5 @@ body {
   font-family: poppins, sans-serif;
   font-style: normal;
   font-weight: 600; 
+  overflow: scroll; 
  }

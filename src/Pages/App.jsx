@@ -19,8 +19,8 @@ const Body = () => {
   breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs']}
   minBreakpoint="xs">
   <div>
-    <Container className="border mt-3" id="AppBody">
-      <Row className="justify-content-md-center">
+    <Container className="border mt-3">
+      <Row className="justify-content-md-center menuBody">
         <Col className="justify-content-center text-center" md="auto">
         <img
               alt=""

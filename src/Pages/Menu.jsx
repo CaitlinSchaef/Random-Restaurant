@@ -5,48 +5,57 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { useEffect, useState } from "react";
+import Card from 'react-bootstrap/Card';
 
 // Should I first use the API to pull everything by cuisine_type French-Italian-Mediterranean : Appetizers (5), Lunch (4), Dinner (6)
 
 // Set some Menu Consts?
-const Appetizer = ({/* component */}) => {
+const MenuTitle = ({title, onClick}) => {
   return (
-    <h3>
-      Appetizers {/*component*/}
-    </h3>
-  )
-}
-
-const Lunch = ({/* component */}) => {
-  return (
-    <h3>
-      Lunch {/*component*/}
-    </h3>
-  )
-}
-
-const Dinner = ({/* component */}) => {
-  return (
-    <h3>
-      Dinner {/*component*/}
-    </h3>
-  )
-}
-
-const FoodDisplay = ({food}) => {
-  return (
-    <div>
-      {food.title}
-      {food.description}
-      {food.price}
+    <div onClick={() => onClick(title)}>
+      {title}
     </div>
   )
 }
 
+
+const FoodDisplay = ({food}) => {
+  return (
+    // <div>
+    //   <Row className="justify-content-center">
+        <Col md={6}>
+          <Card>
+            <Card.Body>
+              <Card.Title>{food.title}</Card.Title>
+            <Card.Text>{food.description} <br></br>
+            {food.price}</Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+    //   </Row>
+    // </div>
+  )
+}
+
+// displaying specific menus
+
+const SpecificDisplay = ({ title, foodList }) => {
+  return( 
+    <div>
+      <h1>{title}</h1>
+      <Row className="justify-content-around g-4">
+      {foodList.map(food => <FoodDisplay key={food.id} food={food} />)}
+      </Row>
+    </div>
+  )
+}
+
+
+
 //a getter
 
 async function getFood({ setMenuItems }) {
-  const foodList = await axios.get(`https://www.jsonkeeper.com/b/MDXW`)
+  const foodList = await axios.get(`https://raw.githubusercontent.com/bootcamp-students/random-restaurant-json/main/foodList.json`)
   console.log("foodList:", foodList) 
   setMenuItems(foodList.data.filter(food => food.cuisine_type === "Italian" || food.cuisine_type ===  "French" || food.cuisine_type === "Mediterranean"))
 }
@@ -55,36 +64,10 @@ async function getFood({ setMenuItems }) {
 
 function fillMenu({ setAppetizers, setLunch, setDinner, menuItems }) {
   setAppetizers(menuItems.filter(food => food.category === "Appetizer"))
-
+  setLunch(menuItems.filter(food => food.category === "Lunch"))
+  setDinner(menuItems.filter(food => food.category === "Dinner")) 
 }
 
-
-// OR something like:
-
-// const handleClick = () => {
-//   let newTitle = {foodlist.data.filter(food => food.title)};
-//   let newDescription = {foodlist.data.filter(food => food.description)};
-//   let newPrice = {foodlist.data.filter(food => food.price)};
-//   setMenuItems(newMenuItem) //?
-// }
-
-
-// return (
-//   <h3={{margin: '5px'}}
-//     onClick={handleClick}
-//     >
-//       {`Click Me ${buttonCount}`} //? should this be where I build the div
-//   </h3>
-// )
-// }
-
-
-
-
-//Components to pull into menus by category
-// Title 
-// Description
-// Price
 
 
 function Menu() {
@@ -92,6 +75,7 @@ function Menu() {
   const [appetizers, setAppetizers] = useState([])
   const [lunch, setLunch] = useState([])
   const [dinner, setDinner] = useState([])
+  const [display, setDisplay] = useState ('')
   console.log('MenuItems: ', menuItems)
   useEffect(() => {
     getFood({ setMenuItems })
@@ -102,7 +86,11 @@ function Menu() {
       fillMenu({ setAppetizers, setLunch, setDinner, menuItems })
     }
   }, [menuItems])
-  console.log("Appetizers:", appetizers)
+
+  useEffect(() => {
+    <SpecificDisplay />
+  }, [<MenuTitle />])
+ 
 
   return (
     <ThemeProvider
@@ -112,21 +100,20 @@ function Menu() {
         <Container className>
           <Row className="justify-content-xs-center border m-3 p-3 menuBody">
             <Col className="justify-content-center text-center p-1">
-                <h2>Menu</h2>
-                <span>
-                  <Appetizer />
-                  <Lunch />
-                  <Dinner />
-                </span>
+              <h1>MENU</h1>
+              <MenuTitle title="Appetizers" onClick={(() => setDisplay('Appetizers'))}/>
+              <MenuTitle title="Lunch" onClick={(() => setDisplay('Lunch'))}/>
+              <MenuTitle title="Dinner" onClick={(() => setDisplay('Dinner'))}/>
             </Col>
           </Row>
         </Container>
-        {/* I want to set a component (maybe named Menu) here that will fill with a row with two columns over and over until  */}
-            {/* all menu items have been called  */}
+{/* diplay menu container */}
         <Container className>
           <Row className="justify-content-xs-center border m-3 p-3 menuBody">
             <Col className="justify-content-center text-center p-1">
-              {appetizers.map(food => <FoodDisplay key={food.id} food={food} />)}
+              {display === "Appetizers" && <SpecificDisplay title="Appetizers" foodList={appetizers}/>}
+              {display === "Lunch" &&  <SpecificDisplay title="Lunch" foodList={lunch}/>}
+              {display === "Dinner" &&  <SpecificDisplay title="Dinner" foodList={dinner}/>}
             </Col>
           </Row>
         </Container>
@@ -137,3 +124,14 @@ function Menu() {
 
 
 export default Menu
+
+// {display === 'Appetizers' ? (
+//   <div>
+//     <h1>Appetizers</h1>
+//     {appetizers.map(food => <FoodDisplay key={food.id} food={food} />)}
+//   </div>
+// ) : null}
+// <h1>Lunch</h1>
+// {lunch.map(food => <FoodDisplay key={food.id} food={food} />)}
+// <h1>Dinner</h1>
+// {dinner.map(food => <FoodDisplay key={food.id} food={food} />)}
