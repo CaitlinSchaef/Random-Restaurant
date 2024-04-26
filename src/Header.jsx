@@ -29,16 +29,16 @@ function Header() {
         </Link>
         </Navbar.Brand>
 
-        <Navbar.Text className="nav-link">
+        <Navbar.Text className="nav-link me-2">
         <Link className="nav-link" to='/menu'>MENU</Link> 
         </Navbar.Text>
 
 
-        <Navbar.Text className="nav-link">
+        <Navbar.Text className="nav-link me-2">
         <Link className="nav-link" to='/about'>ABOUT</Link>
         </Navbar.Text>
 
-        <Navbar.Text className="nav-link">
+        <Navbar.Text className="nav-link me-2">
         <Link className="nav-link" to='/contact'>CONTACT</Link>
         </Navbar.Text>
 
