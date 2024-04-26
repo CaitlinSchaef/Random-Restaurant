@@ -1,10 +1,11 @@
 .navbar {
-    background-color: #1f4844cb; 
+    background-color: #1f4844e7; 
     color: #f6f4e6;
     text-decoration: none;
     font-family: poppins, sans-serif;
     font-style: normal;
-    font-weight: 300;
+    font-weight: 400;
+    font-size: large;
 }
 .navbar-brand {
     color: #f6f4e6;

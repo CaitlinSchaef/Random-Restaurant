@@ -30,8 +30,11 @@ body {
   color: #2A5955;
   border-style: solid;
   border-color: #2A5955;
+  border-width: 7px;
   font-family: poppins, sans-serif;
   font-style: normal;
   font-weight: 600; 
   overflow: scroll; 
  }
+
+ 

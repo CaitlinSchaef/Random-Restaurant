@@ -13,9 +13,9 @@ const Body = () => {
   breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs']}
   minBreakpoint="xs">
   <div>
-    <Container className="mt-3">
+    <Container className="mt-3 mb-3">
       <Row className="justify-content-md-center menuBody">
-        <Col className="justify-content-center text-center" md="auto">
+        <Col className="justify-content-center text-center mb-3" md="auto">
         <img
               alt=""
               src={Logo}
@@ -33,7 +33,7 @@ const Body = () => {
                 Over the centuries, this stunning island has been shaped by diverse rulers, including the Phoenicians, Romans, Byzantines, and Spanish. While Sardinia has been influenced by various cultures throughout its history, including French (particularly through its proximity to Corsica), its identity is firmly rooted in Italian tradition. <br></br>
                 It's said that from Mount Ortobene, France, Italy, Malta and Greece can be seen. We strive to bring you the perfect melding of the amazing blend that is Sardinia, our home, through our carefully cultivated menu. 
                 </p>
-
+                <Image src={Sunset} fluid />
         </Col>
       </Row>
     </Container>
