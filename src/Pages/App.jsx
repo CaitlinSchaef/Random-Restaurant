@@ -3,7 +3,7 @@ import ThemeProvider from 'react-bootstrap/ThemeProvider'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Logo from '../assets/_Logo4.png'
+import Logo from '../assets/Logo4.png'
 
 
 // const Title = () => {

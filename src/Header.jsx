@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import NavbarCollapse from 'react-bootstrap/NavbarCollapse'
-import Logo from './assets/_Logo4.svg'
+import Logo from './assets/Logo4.svg'
 
 function Header() {
   let location = useLocation();
