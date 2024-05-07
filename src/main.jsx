@@ -18,8 +18,7 @@ import ErrorPage from './Pages/ErrorPage'
 import Header from './Header'
 // import Footer from './Footer'
 
-const site = import.meta.env.BASE_URL
-console.log(site)
+
 
 
 function Layout() {
@@ -58,9 +57,7 @@ const router = createBrowserRouter([
       },
     ]
   }
-], {
-  basename: site
-})
+])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <RouterProvider router={router} />

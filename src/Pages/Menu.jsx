@@ -118,7 +118,7 @@ function Menu() {
           </Row>
         </Container>
       
-    </ThemeProvider>
+    </ThemeProvider> 
   )
 }
 
