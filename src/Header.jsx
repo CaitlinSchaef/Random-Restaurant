@@ -46,6 +46,10 @@ function Header() {
         <Link className="nav-link" to='/order'>ORDER</Link>
         </Navbar.Text>
 
+        <Navbar.Text className="nav-link me-2">
+        <Link className="nav-link" to='/review'>REVIEWS</Link>
+        </Navbar.Text>
+
       </Navbar.Collapse>
       </Container>
     </Navbar>

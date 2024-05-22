@@ -15,6 +15,7 @@ import App from './Pages/App'
 import Menu from './Pages/Menu'
 import Contact from './Pages/Contact'
 import Order from './Pages/Order'
+import Review from './Pages/Review'
 import ErrorPage from './Pages/ErrorPage'
 import Header from './Header'
 // import Footer from './Footer'
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
         path: '/order',
         element: <Order />
       },
+      {
+        path: '/review',
+        element: <Review />
+      }
     ]
   }
 ])
