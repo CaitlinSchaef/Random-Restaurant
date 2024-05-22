@@ -42,6 +42,10 @@ function Header() {
         <Link className="nav-link" to='/contact'>CONTACT</Link>
         </Navbar.Text>
 
+        <Navbar.Text className="nav-link me-2">
+        <Link className="nav-link" to='/contact'>ORDER</Link>
+        </Navbar.Text>
+        
       </Navbar.Collapse>
       </Container>
     </Navbar>

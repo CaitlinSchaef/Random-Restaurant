@@ -23,3 +23,7 @@ This is a template with the following:
 * from branch 'main':
 1. $ `npm run build`
 2. add changes and push to repo 
+
+
+### This read me isn't technically accurate because i did deploy this to vercel (you can tell because it has a vercel.json)
+
