@@ -111,7 +111,7 @@ function Menu() {
             </Col>
           </Row>
         </Container>
-{/* diplay menu container */}
+        {/* diplay menu container */}
         <Container className>
           <Row className="justify-content-xs-center m-3 p-3 menuBody">
             <Col className="justify-content-center text-center p-1">

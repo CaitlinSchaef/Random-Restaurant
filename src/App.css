@@ -48,4 +48,12 @@ body {
   background-color: #EBF0F3;
  }
 
+button {
+  border-style: solid;
+  border-color: #2A5955;
+  background-color: #45928bd2;
+}
 
+input {
+  width: 300px;
+}
