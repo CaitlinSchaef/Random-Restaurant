@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom"
+import axios from 'axios';
 import ThemeProvider from 'react-bootstrap/ThemeProvider'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Image from 'react-bootstrap/Image';
+import { useEffect, useState } from "react";
+import Card from 'react-bootstrap/Card';
+
+
 
 
 const Body = () => {
