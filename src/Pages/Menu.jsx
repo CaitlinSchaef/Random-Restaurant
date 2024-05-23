@@ -7,9 +7,7 @@ import Col from 'react-bootstrap/Col'
 import { useEffect, useState } from "react";
 import Card from 'react-bootstrap/Card';
 
-// Should I first use the API to pull everything by cuisine_type French-Italian-Mediterranean : Appetizers (5), Lunch (4), Dinner (6)
 
-// Set some Menu Consts?
 const MenuTitle = ({title, onClick}) => {
   return (
     <div onClick={() => onClick(title)}>
@@ -21,30 +19,27 @@ const MenuTitle = ({title, onClick}) => {
 
 const FoodDisplay = ({food}) => {
   return (
-    // <div>
-    //   <Row className="justify-content-center">
+
         <Col md={6}>
           <Card className="cardBody">
             <Card.Body>
-              <Card.Title className="cardTitle">{food.title}</Card.Title>
+              <Card.Title className="cardTitle">{food.name}</Card.Title>
             <Card.Text>{food.description} <br></br>
-            {food.price}</Card.Text>
+            ${food.price}</Card.Text>
             </Card.Body>
           </Card>
         </Col>
-    //   </Row>
-    // </div>
   )
 }
 
 // displaying specific menus
 
-const SpecificDisplay = ({ title, foodList }) => {
+const SpecificDisplay = ({ title, menuItems }) => {
   return( 
     <div>
       <h1>{title}</h1>
       <Row className="justify-content-around g-4">
-      {foodList.map(food => <FoodDisplay key={food.id} food={food} />)}
+      {menuItems.map(food => <FoodDisplay key={food.id} food={food} />)}
       </Row>
     </div>
   )
@@ -52,20 +47,15 @@ const SpecificDisplay = ({ title, foodList }) => {
 
 
 
-//a getter
-
-async function getFood({ setMenuItems }) {
-  const foodList = await axios.get(`https://raw.githubusercontent.com/bootcamp-students/random-restaurant-json/main/foodList.json`)
-  console.log("foodList:", foodList) 
-  setMenuItems(foodList.data.filter(food => food.cuisine_type === "Italian" || food.cuisine_type ===  "French" || food.cuisine_type === "Mediterranean"))
-}
-
 // function to insert info into the html divs  -setter
-
-function fillMenu({ setAppetizers, setLunch, setDinner, menuItems }) {
-  setAppetizers(menuItems.filter(food => food.category === "Appetizer"))
-  setLunch(menuItems.filter(food => food.category === "Lunch"))
-  setDinner(menuItems.filter(food => food.category === "Dinner")) 
+// The issue is I'm filtering by this category and expecting it to be an integer, but it was an integer in an array, and because something can be in multiple categories it was an array, 
+//so we didn't actually fix anything well, this will only work on things that have one category.
+//We would need to change it to 'contains'/'includes' or something along those lines.
+function fillMenu({ setAppetizers, setDessert, setDinner, setDrink, menuItems }) {
+  setAppetizers(menuItems.filter(food => food.category[0] === 4))
+  setDinner(menuItems.filter(food => food.category[0] === 1)) 
+  setDessert(menuItems.filter(food => food.category[0] === 2))
+  setDrink(menuItems.filter(food => food.category[0] === 3))
 }
 
 
@@ -73,23 +63,36 @@ function fillMenu({ setAppetizers, setLunch, setDinner, menuItems }) {
 function Menu() {
   const [menuItems, setMenuItems] = useState([])
   const [appetizers, setAppetizers] = useState([])
-  const [lunch, setLunch] = useState([])
+  const [dessert, setDessert] = useState([])
+  const [drink, setDrink] = useState([])
   const [dinner, setDinner] = useState([])
   const [display, setDisplay] = useState ('')
-  console.log('MenuItems: ', menuItems)
+  console.log('MenuItems: ', appetizers, dinner, dessert, drink)
+
+  //a getter
+  async function getFood() {
+    const foodList = await axios.get('http://127.0.0.1:8000/menuItem/')
+    console.log("foodList:", foodList.data)
+    setMenuItems(foodList.data)
+    // .then(response => {
+    //   setMenuItems(response.data)
+    // })
+    // .catch(error => console.log('ERROR: ', error))
+  }
   useEffect(() => {
-    getFood({ setMenuItems })
+    getFood()
   }, [])
   // empty brackets at the end of useEffect indicates it only happens on load, if a variable is in the brackets, it is watching that specific variable for change
   useEffect(() => {
+    console.log('Menu Items UseEffect')
     if (menuItems.length > 0) {
-      fillMenu({ setAppetizers, setLunch, setDinner, menuItems })
+      fillMenu({ setAppetizers, setDessert, setDinner, setDrink, menuItems })
     }
   }, [menuItems])
 
-  useEffect(() => {
-    <SpecificDisplay />
-  }, [<MenuTitle />])
+  // useEffect(() => {
+  //   <SpecificDisplay />
+  // }, [<MenuTitle />])
  
 
   return (
@@ -102,8 +105,9 @@ function Menu() {
             <Col className="justify-content-center text-center p-1">
               <h1>MENU</h1>
               <MenuTitle title="Appetizers" onClick={(() => setDisplay('Appetizers'))}/>
-              <MenuTitle title="Lunch" onClick={(() => setDisplay('Lunch'))}/>
               <MenuTitle title="Dinner" onClick={(() => setDisplay('Dinner'))}/>
+              <MenuTitle title="Dessert" onClick={(() => setDisplay('Dessert'))}/>
+              <MenuTitle title="Drinks" onClick={(() => setDisplay('Drinks'))}/>
             </Col>
           </Row>
         </Container>
@@ -111,9 +115,11 @@ function Menu() {
         <Container className>
           <Row className="justify-content-xs-center m-3 p-3 menuBody">
             <Col className="justify-content-center text-center p-1">
-              {display === "Appetizers" && <SpecificDisplay title="Appetizers" foodList={appetizers}/>}
-              {display === "Lunch" &&  <SpecificDisplay title="Lunch" foodList={lunch}/>}
-              {display === "Dinner" &&  <SpecificDisplay title="Dinner" foodList={dinner}/>}
+              {display === "Appetizers" && <SpecificDisplay title="Appetizers" menuItems={appetizers}/>}
+              {display === "Dinner" &&  <SpecificDisplay title="Dinner" menuItems={dinner}/>}
+              {display === "Dessert" &&  <SpecificDisplay title="Dessert" menuItems={dessert}/>}
+              {/* The title=blank is what displays on the lower menu */}
+              {display === "Drinks" && <SpecificDisplay title="Drinks" menuItems={drink}/>}
             </Col>
           </Row>
         </Container>
@@ -125,13 +131,3 @@ function Menu() {
 
 export default Menu
 
-// {display === 'Appetizers' ? (
-//   <div>
-//     <h1>Appetizers</h1>
-//     {appetizers.map(food => <FoodDisplay key={food.id} food={food} />)}
-//   </div>
-// ) : null}
-// <h1>Lunch</h1>
-// {lunch.map(food => <FoodDisplay key={food.id} food={food} />)}
-// <h1>Dinner</h1>
-// {dinner.map(food => <FoodDisplay key={food.id} food={food} />)}
