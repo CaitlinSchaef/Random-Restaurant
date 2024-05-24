@@ -74,6 +74,7 @@ function Menu() {
     const foodList = await axios.get('http://127.0.0.1:8000/menuItem/')
     console.log("foodList:", foodList.data)
     setMenuItems(foodList.data)
+    // awaits need try catches so add one dummy
     // .then(response => {
     //   setMenuItems(response.data)
     // })
