@@ -90,7 +90,7 @@ function Order() {
         <input
         onChange={e => setOrder(e.target.value)}
         placeholder="Enter Name For Order"
-        value={name}
+        value={status}
         />
         <br></br>
         <button onClick={() => {
